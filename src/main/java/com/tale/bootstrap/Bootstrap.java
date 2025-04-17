@@ -86,12 +86,13 @@ public class Bootstrap implements BladeLoader {
         StringBuffer sbuf = new StringBuffer();
         macros.forEach(s -> sbuf.append(',').append(s));
         templateEngine.addConfig("jetx.import.macros", sbuf.substring(1));
-
+        System.out.println();
         GlobalResolver resolver = templateEngine.getGlobalResolver();
         resolver.registerFunctions(Commons.class);
         resolver.registerFunctions(Theme.class);
         resolver.registerFunctions(AdminCommons.class);
         resolver.registerTags(JetTag.class);
+        System.out.println();
 
         JetGlobalContext context = templateEngine.getGlobalContext();
         context.set("version", environment.get("app.version", "v1.0"));
